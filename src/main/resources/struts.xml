@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="studentInfo" namespace="/" extends="struts-default">
+		<action name="user" class="com.qiuzhisystem.action.UserAction" method="login">
+			<result name="error">/login.jsp</result>
+			<result name="success">/main.jsp</result>
+		</action>
+		<action name="dataDicTypeList" class="com.qiuzhisystem.action.DataDicTypeAction" method="list">
+			<result name="success">/main.jsp</result>
+		</action>
+		<action name="dataDicTypePreSave" class="com.qiuzhisystem.action.DataDicTypeAction" method="preSave">
+			<result name="success">/main.jsp</result>
+		</action>
+		<action name="dataDicTypeSave" class="com.qiuzhisystem.action.DataDicTypeAction" method="save">
+			<result name="typeSave"  type="redirectAction">dataDicTypeList</result>
+		</action>
+	
+		<action name="dataDicTypeDelete" class="com.qiuzhisystem.action.DataDicTypeAction" method="delete">
+			
+		</action>
+		<action name="dataDicList" class="com.qiuzhisystem.action.DataDicAction" method="list">
+			<result name="success">/main.jsp</result>
+		</action>
+		<action name="dataDicDelete" class="com.qiuzhisystem.action.DataDicAction" method="delete">
+		</action>
+		<action name="dataDicSave" class="com.qiuzhisystem.action.DataDicAction" method="save">
+			<result name="save"  type="redirectAction">dataDicList</result>
+		</action>
+		<action name="dataDicDelete" class="com.qiuzhisystem.action.DataDicAction" method="delete">
+			
+		</action>
+		<action name="dataDicPreSave" class="com.qiuzhisystem.action.DataDicAction" method="preSave">
+			<result name="success">/main.jsp</result>
+		</action>
+	</package>
+</struts>
