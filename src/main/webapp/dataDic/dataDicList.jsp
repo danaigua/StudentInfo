@@ -35,7 +35,7 @@
 					<td>${dataDic.ddTypeName }</td>
 					<td>${dataDic.ddValue }</td>
 					<td>${dataDic.ddDesc }</td>
-					<td><button class="btn btn-mini btn-info" type="button" onclick="javascript:window.location='dataDicTypePreSave?ddTypeId=${dataDic.ddId}'">修改</button>&nbsp;&nbsp;<button class="btn btn-mini btn-danger" type="button" onclick="dataDicDelete(${dataDic.ddId})">删除</button></td>
+					<td><button class="btn btn-mini btn-info" type="button" onclick="javascript:window.location='dataDicPreSave?ddId=${dataDic.ddId}'">修改</button>&nbsp;&nbsp;<button class="btn btn-mini btn-danger" type="button" onclick="dataDicDelete(${dataDic.ddId})">删除</button></td>
 				</tr>
 			</c:forEach>
 		</table>

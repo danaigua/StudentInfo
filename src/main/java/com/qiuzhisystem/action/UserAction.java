@@ -5,13 +5,18 @@ import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.qiuzhisystem.dao.UserDao;
 import com.qiuzhisystem.model.User;
 import com.qiuzhisystem.utils.DbUtil;
+import com.qiuzhisystem.utils.NavUtil;
+import com.qiuzhisystem.utils.ResponseUtil;
 import com.qiuzhisystem.utils.StringUtil;
+
+import net.sf.json.JSONObject;
 
 public class UserAction extends ActionSupport implements ServletRequestAware{
 	
@@ -22,8 +27,44 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 	private String error;
 	
 	private String imageCode;
+	private String mainPage;
+	private String navCode;
+	private int userId;
+	private String password;
 	
 	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getMainPage() {
+		return mainPage;
+	}
+
+	public void setMainPage(String mainPage) {
+		this.mainPage = mainPage;
+	}
+
+	public String getNavCode() {
+		return navCode;
+	}
+
+	public void setNavCode(String navCode) {
+		this.navCode = navCode;
+	}
+
 	public String getImageCode() {
 		return imageCode;
 	}
@@ -90,6 +131,45 @@ public class UserAction extends ActionSupport implements ServletRequestAware{
 		
 		return SUCCESS;
 		
+	}
+	public String preSave() throws Exception{
+		navCode=NavUtil.getNavgation("系统管理", "修改密码");
+		mainPage="user/modifyPassword.jsp";
+		return SUCCESS;
+	}
+	
+	public String save(){
+		User user=new User();
+		user.setUserId(userId);
+		user.setPassword(password);
+		Connection con=null;
+		try{
+			con=dbUtil.getCon();
+			int updateNums=userDao.modifyPassword(con, user);
+			JSONObject resultJson=new JSONObject();
+			if(updateNums>0){
+				resultJson.put("success", true);
+			}else{
+				resultJson.put("errorMsg", "修改密码失败");
+			}
+			ResponseUtil.write(resultJson, ServletActionContext.getResponse());
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try {
+				dbUtil.closeCon(con);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
+	public String logOut(){
+		HttpSession session=request.getSession();
+		session.removeAttribute("currentUser");
+		return "logOut";
 	}
 	
 	public void setServletRequest(HttpServletRequest request) {

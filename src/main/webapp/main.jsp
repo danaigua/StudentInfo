@@ -20,8 +20,9 @@
 	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-responsive.css"
 	rel="stylesheet">
 <script src="${pageContext.request.contextPath}/bootstrap/js/jQuery.js"></script>
-<script
-	src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/js/My97DatePicker/WdatePicker.js"></script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
 	<div class="container">

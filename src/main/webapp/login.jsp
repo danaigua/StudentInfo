@@ -66,7 +66,7 @@ A:active {
 </head>
 <body>
 <FORM id=adminlogin  method=post
-	name=adminlogin action="user!login">
+	name=adminlogin action="user">
 <DIV></DIV>
 <TABLE style="MARGIN: auto; WIDTH: 100%; HEIGHT: 100%" border=0
 	cellSpacing=0 cellPadding=0>

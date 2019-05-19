@@ -23,4 +23,11 @@ public class UserDao {
 		}
 		return resultUser;
 	}
+	public int modifyPassword(Connection con,User user)throws Exception{
+		String sql="update t_user set password=? where userId=?";
+		PreparedStatement pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, user.getPassword());
+		pstmt.setInt(2, user.getUserId());
+		return pstmt.executeUpdate();
+	}
 }
